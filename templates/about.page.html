@@ -1,0 +1,19 @@
+{{ template "base" . }} {{ define "content"}}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>About</h1>
+			<p>Welcome to the About page.</p>
+			<p>This came from template : {{ index .StringMap "test"}}</p>
+			{{ if ne (index .StringMap "remote_ip") "" }}
+			<p>Your ip is : {{ index .StringMap "remote_ip" }}</p>
+			{{ else }}
+			<p>Remote ip is not set</p>
+			{{ end }}
+			<p>
+				<a href="/">Home</a>
+			</p>
+		</div>
+	</div>
+</div>
+{{ end }}
