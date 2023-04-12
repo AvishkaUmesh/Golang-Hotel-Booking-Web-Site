@@ -12,6 +12,7 @@ import (
 	"github.com/alexedwards/scs/v2"
 )
 
+const SERVER_ADDRESS = "localhost"
 const PORT = ":8080"
 
 var app config.AppConfig
@@ -43,10 +44,10 @@ func main() {
 
 	render.NewTemplate(&app)
 
-	fmt.Println("Server is running on port", PORT)
+	fmt.Println("Server is running on ", SERVER_ADDRESS+PORT)
 
 	serv := &http.Server{
-		Addr:    PORT,
+		Addr:    SERVER_ADDRESS + PORT,
 		Handler: routes(&app),
 	}
 
