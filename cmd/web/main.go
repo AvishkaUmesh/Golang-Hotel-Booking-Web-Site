@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/config"
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/handlers"
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/render"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/handlers"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/render"
 	"github.com/alexedwards/scs/v2"
 )
 

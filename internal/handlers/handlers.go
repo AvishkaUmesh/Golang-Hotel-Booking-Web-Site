@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/config"
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/models"
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/render"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/models"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/render"
 )
 
 // Repository is the repository type

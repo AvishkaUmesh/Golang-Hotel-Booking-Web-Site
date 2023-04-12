@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/config"
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/models"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/models"
 	"github.com/justinas/nosurf"
 )
 

@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/config"
-	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/pkg/handlers"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
