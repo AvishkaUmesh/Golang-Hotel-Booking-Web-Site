@@ -13,6 +13,7 @@ import (
 )
 
 var app *config.AppConfig
+var pathToTemplates = "./templates"
 
 // NewTemplate sets the config for the template package
 func NewTemplate(a *config.AppConfig) {
@@ -72,7 +73,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 	templateCache := map[string]*template.Template{}
 
 	// get all pages from templates folder
-	pages, err := filepath.Glob("./templates/*.page.html")
+	pages, err := filepath.Glob(fmt.Sprintf("%s/*.page.html", pathToTemplates))
 
 	if err != nil {
 		return templateCache, err
@@ -91,7 +92,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 		}
 
 		// get layout
-		matches, err := filepath.Glob("./templates/*.layout.html")
+		matches, err := filepath.Glob(fmt.Sprintf("%s/*.layout.html", pathToTemplates))
 
 		if err != nil {
 			return templateCache, err
@@ -99,7 +100,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 		// add layout to template set
 		if len(matches) > 0 {
-			templateSet, err = templateSet.ParseGlob("./templates/*.layout.html")
+			templateSet, err = templateSet.ParseGlob(fmt.Sprintf("%s/*.layout.html", pathToTemplates))
 
 			if err != nil {
 				return templateCache, err
