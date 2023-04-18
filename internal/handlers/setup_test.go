@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/driver"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/models"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/render"
 	"github.com/alexedwards/scs/v2"
@@ -48,10 +49,17 @@ func getRoutes() http.Handler {
 		log.Fatal("Cannot create template cache")
 	}
 
+	//connect to the database
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=avishka password=")
+	if err != nil {
+		log.Fatal("Cannot connect to database! Dying...")
+	}
+	log.Println("Database connected")
+
 	app.TemplateCache = templateCache
 	app.UseCache = true
 
-	repo := NewRepo(&app)
+	repo := NewRepo(&app, db)
 	NewHandlers(repo)
 
 	render.NewTemplate(&app)
