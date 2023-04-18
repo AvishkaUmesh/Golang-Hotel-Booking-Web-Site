@@ -40,13 +40,13 @@ func TestRenderTemplate(t *testing.T) {
 
 	var ww myWriter
 
-	err = RenderTemplate(&ww, r, "home.page.html", &models.TemplateData{})
+	err = Template(&ww, r, "home.page.html", &models.TemplateData{})
 
 	if err != nil {
 		t.Error("error writing template to browser")
 	}
 
-	err = RenderTemplate(&ww, r, "fail.page.html", &models.TemplateData{})
+	err = Template(&ww, r, "fail.page.html", &models.TemplateData{})
 
 	if err == nil {
 		t.Error("error writing template to browser")
@@ -67,7 +67,7 @@ func getSession() (*http.Request, error) {
 }
 
 func TestNewTemplates(t *testing.T) {
-	NewTemplate(app)
+	NewRenderer(app)
 }
 
 func TestCreateTemplateCache(t *testing.T) {
