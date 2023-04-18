@@ -6,24 +6,30 @@ import (
 	"net/http"
 
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/driver"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/forms"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/helpers"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/models"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/render"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/repository"
+
+	dbrepo "github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/repository/dbRepo"
 )
 
 // Repository is the repository type
 type Repository struct {
 	App *config.AppConfig
+	DB  repository.DatabaseRepo
 }
 
 // Repo is the repository used by the handlers
 var Repo *Repository
 
 // NewRepo creates a new repository
-func NewRepo(a *config.AppConfig) *Repository {
+func NewRepo(a *config.AppConfig, db *driver.DB) *Repository {
 	return &Repository{
 		App: a,
+		DB:  dbrepo.NewPostgresRepo(db.SQL, a),
 	}
 }
 

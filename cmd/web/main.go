@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/config"
+	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/driver"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/handlers"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/helpers"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/models"
@@ -26,11 +27,13 @@ var errorLog *log.Logger
 
 func main() {
 
-	err := run()
+	db, err := run()
 
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer db.SQL.Close()
 
 	fmt.Println("Server is running on ", SERVER_ADDRESS+PORT)
 
@@ -45,7 +48,7 @@ func main() {
 	}
 }
 
-func run() error {
+func run() (*driver.DB, error) {
 	gob.Register(models.Reservation{})
 	// change this to true when in production
 	app.InProduction = false
@@ -64,21 +67,28 @@ func run() error {
 
 	app.Session = session
 
+	//connect to the database
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=avishka password=")
+	if err != nil {
+		log.Fatal("Cannot connect to database! Dying...")
+	}
+	log.Println("Database connected")
+
 	templateCache, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("Cannot create template cache")
-		return err
+		return nil, err
 	}
 
 	app.TemplateCache = templateCache
 	app.UseCache = false
 
-	repo := handlers.NewRepo(&app)
+	repo := handlers.NewRepo(&app, db)
 	handlers.NewHandlers(repo)
 
 	render.NewTemplate(&app)
 	helpers.NewHelpers(&app)
 
-	return nil
+	return db, nil
 
 }
