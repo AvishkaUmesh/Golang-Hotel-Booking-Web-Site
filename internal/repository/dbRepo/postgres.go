@@ -65,7 +65,7 @@ func (m *PostgresDbRepo) InsertRoomRestriction(restriction models.RoomRestrictio
 }
 
 // SearchAvailabilityByDatesByRoomID returns true if availability exists for roomID, and false if no availability
-func (m *PostgresDbRepo) SearchAvailabilityByDates(start, end time.Time, roomId int) (bool, error) {
+func (m *PostgresDbRepo) SearchAvailabilityByDatesByRoomID(start, end time.Time, roomId int) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
