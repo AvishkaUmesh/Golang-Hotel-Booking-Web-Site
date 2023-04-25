@@ -15,9 +15,8 @@ import (
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/models"
 	"github.com/AvishkaUmesh/Golang-Hotel-Booking-Web-Site/internal/render"
 	"github.com/alexedwards/scs/v2"
-	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-
+	"github.com/go-chi/chi/v5"
 	"github.com/justinas/nosurf"
 )
 
